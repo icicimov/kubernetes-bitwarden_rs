@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bitwarden
+  labels:
+    app: bitwarden
+data: 
+  SMTP_HOST: 'smtp.domain.tld'
+  SMTP_FROM: 'user@smtp.domain.tld'
+  SMTP_PORT: '587'
+  SMTP_SSL: 'true'
+  # nginx-ingress-controller has built in support for Websockets
+  # Project: https://github.com/kubernetes/ingress-nginx
+  WEBSOCKET_ENABLED: 'true'
+  DATA_FOLDER: '/data'
+  DOMAIN: 'https://bitwarden.domain.tld'
+  ROCKET_WORKERS: '10'
+  SHOW_PASSWORD_HINT: 'false'
+  WEB_VAULT_ENABLED: 'true'
+  ROCKET_PORT: '8080'

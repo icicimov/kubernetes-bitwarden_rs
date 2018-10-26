@@ -1,0 +1,39 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bitwarden
+  labels:
+    app: bitwarden
+  annotations:
+    # the name of the nginx-ingress-controller class
+    kubernetes.io/ingress.class: nginx-ingress-external
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Request-Id: $req_id";
+    nginx.ingress.kubernetes.io/connection-proxy-header: "keep-alive"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/limit-connections: "25"
+    nginx.ingress.kubernetes.io/limit-rps: "15"
+    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "10"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - bitwarden.domain.tld
+    secretName: tls-secret
+  rules:
+  - host: bitwarden.domain.tld
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bitwarden
+          servicePort: 80
+      - path: /notifications/hub
+        backend:
+          serviceName: bitwarden
+          servicePort: 3012
