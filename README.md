@@ -35,3 +35,7 @@ The SMTP username and password need to be set in the `smtp-secret.yml` file as `
 There is another option to provide TLS certificate for the domain in the `ingress.yml` via the `secretName` parameter if you haven't done that already in the Nginx proxy settings (the difference is this certificate applies to this Ingress only versus globally for all domains when set in Nginx as default certificate).
 
 The application gets deployed as Kubernetes [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) so we can easily use persistent EBS volume for our data. Some other settings like CPU and memory resources are set and can be modified as needed in this file. The app will run as user id 33 (www-data) instead of default root user for increased security. The included RBAC settings in the `rbac.yml` file provide access only to Kubernetes resources the app needs.
+
+## Screenshot
+
+![bitwarden_rs](bitwarden.png "bitwarden_rs")
