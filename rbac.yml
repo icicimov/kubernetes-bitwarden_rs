@@ -26,6 +26,7 @@ rules:
       - secrets
     resourceNames:
       - "bitwarden-smtp"
+      - "bitwarden-tls"
     verbs:
       - get
 

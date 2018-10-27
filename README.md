@@ -26,6 +26,33 @@ Apart from that the gist provides features like [RBAC](https://kubernetes.io/doc
 
 To find out more see the project's [excellent documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/).
 
+## Let's Encrypt
+
+See [this gist](https://gist.github.com/icicimov/5921ecac7a2179a7eb350e7f1ce8512b) for help about setting `cert-manager` in Kubernetes to manage Let's Encrypt certificates for your domain(s). If you decide to use it then apply this changes to `ingress.yml`:
+
+```yaml
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bitwarden
+  labels:
+    app: bitwarden
+  annotations:
+    ...
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-[staging|prod]"
+spec:
+  tls:
+  - hosts:
+    - bitwarden.domain.tld
+    secretName: bitwarden-tls
+  rules:
+  ...
+```
+
+If successful, `cert-manager` will place the obtained LE certificate in the `bitwarden-tls` secret and manage it's renewal in the future.
+
 ## Settings
 
 The Bitwarden related settings are set in the `configmap.yml` file. 
