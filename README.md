@@ -1,4 +1,4 @@
-# Kubernetes deployment in AWS
+# Kubernetes deployment in AWS/AKS
 
 These manifests provide way to deploy fully functional and secure `bitwarden_rs` application behind `nginx-ingress-controller` and AWS ELBv1 in Kubernetes hosted in AWS. It provides little bit more than just simple deployment but you can use all or just part of the manifests depending on your needs and setup.
 
@@ -16,11 +16,22 @@ To remove run:
 $ kubectl delete -f kubernets/ -n some-namespace
 ```
 
-## Nginx proxy
+## Ingress controller 
 
-The [nginx-ingress-controller](https://github.com/kubernetes/ingress-nginx) is an excellent ingress controller for Kubernetes. See [this gist](https://gist.github.com/icicimov/316ebea363e98824ce7a9aa3d34ffbb4) to deploy the controller in K8S cluster in AWS if you don't have one already running. It will create an ELB with `proxy-protocol` enabled and TCP backend protocol so we can have support for Websockets needed for notifications (the controller has built in support for upgrade headers). 
+### Nginx proxy in AWS
+
+The [nginx-ingress-controller](https://github.com/kubernetes/ingress-nginx) is an excellent ingress controller for Kubernetes.
+
+
+See [this gist](https://gist.github.com/icicimov/316ebea363e98824ce7a9aa3d34ffbb4) to deploy the controller in K8S cluster in AWS if you don't have one already running. It will create an ELB with `proxy-protocol` enabled and TCP backend protocol so we can have support for Websockets needed for notifications (the controller has built in support for upgrade headers). 
 
 If you already have a domain TLS certificate (maybe wildcard one) place it in a secret called `tls-secret` in the `default` namespace so Nginx can use it (optional).
+
+### Ingress controller in Azure/AKS
+
+For Azure see [their instructions](https://docs.microsoft.com/en-us/azure/aks/ingress-tls) on how to setup an ingress controller with TLS.
+
+## Additional configuration
 
 Apart from that the gist provides features like [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/), [HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) and [PDB](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to insure smooth proxy operation.
 
