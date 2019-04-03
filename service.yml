@@ -18,4 +18,3 @@ spec:
   type: ClusterIP
   selector:
     app: bitwarden
-    component: bitwarden
