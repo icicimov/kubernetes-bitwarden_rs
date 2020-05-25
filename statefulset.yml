@@ -23,7 +23,7 @@ spec:
         fsGroup: 33
         runAsUser: 33
       containers:
-      - image: mprasil/bitwarden:latest
+      - image: bitwardenrs/server:latest
         imagePullPolicy: IfNotPresent
         name: bitwarden
         envFrom:
