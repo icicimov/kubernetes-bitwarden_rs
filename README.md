@@ -61,7 +61,7 @@ In case you want to use the email feature, the SMTP username and password need t
 
 There is another option to provide TLS certificate for the domain in the `ingress.yml` via the `secretName` parameter if you haven't done that already in the Nginx proxy settings (the difference is this certificate applies to this Ingress only versus globally for all domains when set in Nginx as default certificate).
 
-The application gets deployed as Kubernetes [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) and uses the [AWSElasticBlockStore storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs) to provide a persistent EBS volume for our data. Some other settings like CPU and memory resources are set in the `statefulset.yml` file and can be modified as needed. The app will run as user id 33 (www-data) instead of default root user for increased security. The included RBAC settings in the `rbac.yml` file provide access only to Kubernetes resources the app needs.
+The application gets deployed as Kubernetes [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) and uses the [AWSElasticBlockStore storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs) to provide a persistent EBS volume for our data - The Storage Class name needs tobe set in the `statefulset.yaml` via the `storageClassName` parameter, some other settings like CPU and memory resources are set in the file and can be modified as needed. The app will run as user id 33 (www-data) instead of default root user for increased security. The included RBAC settings in the `rbac.yml` file provide access only to Kubernetes resources the app needs.
 
 ## Screenshot
 
