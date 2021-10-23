@@ -1,6 +1,6 @@
-# Kubernetes deployment in AWS
+# bitwarden_rs Kubernetes deployment in AWS
 
-These manifests provide way to deploy fully functional and secure `bitwarden_rs` application behind `nginx-ingress-controller` and AWS ELBv1 in Kubernetes hosted in AWS. It provides little bit more than just simple deployment but you can use all or just part of the manifests depending on your needs and setup.
+These manifests provide way to deploy fully functional and secure [`bitwarden_rs`](https://github.com/dani-garcia/bitwarden_rs) application in Kubernetes hosted in AWS. The public access is provided via `nginx-ingress-controller` and AWS ELBv1. It provides little bit more than just a simple deployment but you can use all or just part of the manifests depending on your needs and setup.
 
 This has been deployed and tested with Kubernetes `1.10` but should work with `1.9` and `1.8` too.
 
