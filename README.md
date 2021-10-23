@@ -40,6 +40,7 @@ metadata:
     app: bitwarden
   annotations:
     ...
+    kubernetes.io/tls-acme: "true"	# remove for GKE, see https://github.com/kubeflow/kubeflow/issues/4716
     certmanager.k8s.io/cluster-issuer: "letsencrypt-[staging|prod]"
 spec:
   tls:
