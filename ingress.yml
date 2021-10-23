@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: bitwarden
@@ -30,10 +30,16 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: bitwarden
-          servicePort: 80
+          service:
+            name: bitwarden
+            port:
+              number: 80
       - path: /notifications/hub
+        pathType: Prefix
         backend:
-          serviceName: bitwarden
-          servicePort: 3012
+          service:
+            name: bitwarden
+            port:
+              number: 3012
