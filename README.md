@@ -40,7 +40,6 @@ metadata:
     app: bitwarden
   annotations:
     ...
-    kubernetes.io/tls-acme: "true"
     certmanager.k8s.io/cluster-issuer: "letsencrypt-[staging|prod]"
 spec:
   tls:
