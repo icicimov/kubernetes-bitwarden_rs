@@ -16,5 +16,6 @@ spec:
     port: 3012
     targetPort: 3012
   type: ClusterIP
+  # commend this line above when using nginx ingress and a loadbalancer and not using a cluster IP
   selector:
     app: bitwarden
