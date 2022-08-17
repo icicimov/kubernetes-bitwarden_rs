@@ -11,7 +11,7 @@ data:
   SMTP_HOST: 'smtp.domain.tld'
   SMTP_FROM: 'user@smtp.domain.tld'
   SMTP_PORT: '587'
-  SMTP_SSL: 'true'
+  SMTP_SECURITY: "starttls"
   # nginx-ingress-controller has built in support for Websockets
   # Project: https://github.com/kubernetes/ingress-nginx
   WEBSOCKET_ENABLED: 'true'
@@ -35,4 +35,7 @@ data:
   # Allow current users invite new users even if registrations are otherwise disabled.
   # https://github.com/dani-garcia/bitwarden_rs/blob/master/README.md#disable-invitations
   INVITATIONS_ALLOWED: 'true'
-  
+  # https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Yubikey-OTP-authentication
+  YUBICO_CLIENT_ID: "123123"
+  YUBICO_SECRET_KEY: "Vsdfsew434fsdfsdfsdf="
+
