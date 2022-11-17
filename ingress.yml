@@ -8,6 +8,14 @@ metadata:
   annotations:
     # the name of the nginx-ingress-controller class
     kubernetes.io/ingress.class: nginx-ingress-external
+    nginx.ingress.kubernetes.io/server-snippet: |
+      sendfile on;
+      tcp_nodelay on;
+      tcp_nopush on;
+      location /notifications/hub {
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+      }
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "Request-Id: $req_id";
     nginx.ingress.kubernetes.io/connection-proxy-header: "keep-alive"
